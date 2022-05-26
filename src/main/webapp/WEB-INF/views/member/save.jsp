@@ -16,7 +16,7 @@
 <div class="container">
     <h2>회원가입</h2>
     <div class="form-floating">
-        <form action="/member/save" method="post">
+        <form action="/member/save" method="post" enctype="multipart/form-data">
             아이디<br><input type="text" class="form-control" onblur="duplicateCheck()" id="memberId" name="memberId" placeholder="아이디">
             <span id="dup-check-result"></span><br>
             비밀번호<br><input type="password" class="form-control" onblur="passwordCheck()" id="memberPassword" name="memberPassword" placeholder="비밀번호">
@@ -24,8 +24,8 @@
             이름<br><input type="text" class="form-control" onblur="nameCheck()" id="memberName" name="memberName" placeholder="이름">
             <span id="name-check-result"></span><br>
             이메일<br><input type="text" class="form-control" name="memberEmail" placeholder="이메일"><br>
-            전화번호<br><input type="text" class="form-control" id="memberMobile" onblur="mobileCheck()" name="memberMobile" placeholder="전화번호"><br>
-            <span id="mobile-check-result"></span>
+            전화번호<br><input type="text" class="form-control" id="memberMobile" onblur="mobileCheck()" name="memberMobile" placeholder="전화번호">
+            <span id="mobile-check-result"></span><br>
             프로필 사진 : <input type="file" name="memberProfile"><br>
             <input type="submit" class="btn btn-outline-success" value="회원가입">
         </form>
@@ -40,7 +40,7 @@
         if(memberId.match(exp)) {
             $.ajax({
                 type: "post",
-                url: "duplicate-check",
+                url: "/member/duplicate-check",
                 data: {"memberId": memberId},
                 dataType: "text",
                 success: function (result) {
@@ -100,7 +100,7 @@
                 checkResult.style.color = "red";
             }
             else{
-                checkResult.innerHTML = "1~20자의 한글과 영문 대 소문자만 사용하세요."
+                checkResult.innerHTML = "20자 이내 한글과 영문 대 소문자만 사용하세요."
                 checkResult.style.color = "red";
             }
         }
@@ -108,7 +108,22 @@
     const mobileCheck = () => {
         const memberMobile = document.getElementById("memberMobile").value;
         const checkResult = document.getElementById("mobile-check-result");
-        const exp =
+        const exp = /^(\d{11})$/;
+        if(memberMobile.match(exp)){
+            checkResult.innerHTML = "사용가능한 전화번호입니다.";
+            checkResult.style.color = "green";
+        }
+        else{
+            if(memberMobile.length == 0){
+                checkResult.innerHTML = "필수 입력입니다.";
+                checkResult.style.color = "red";
+            }
+            else{
+                checkResult.innerHTML = "숫자로 된 11자리가 아닙니다."
+                checkResult.style.color = "red";
+            }
+        }
+
     }
 </script>
 </html>

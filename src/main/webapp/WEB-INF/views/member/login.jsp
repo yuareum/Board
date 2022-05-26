@@ -13,6 +13,11 @@
 <body>
 <div class="container">
     <h2>login</h2>
+    <form action="/member/login" method="post">
+        <input type="text" class="form-control" name="memberId" placeholder="아이디"><br>
+        <input type="password" class="form-control" name="memberPassword" placeholder="비밀번호"><br>
+        <input type="submit" value="login">
+    </form>
 </div>
 </body>
 </html>

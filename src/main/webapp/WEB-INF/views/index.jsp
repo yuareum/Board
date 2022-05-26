@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script>
         const saveForm = () => {
-            location.href = "/member/saveForm";
+            location.href = "/member/save-form";
         }
-        const login = () => {
+        const loginForm = () => {
             location.href = "/member/loginForm";
         }
-        const findAll = () => {
-            location.href = "/board/findAll"
+        const paging = () => {
+            location.href = "/board/paging"
         }
     </script>
 </head>
 <body>
     <button class="btn btn-primary" onclick="saveForm()">회원가입</button>
-    <button class="btn btn-primary" onclick="login()">로그인</button>
-    <button class="btn btn-primary" onclick="findAll()">글목록</button>
+    <button class="btn btn-primary" onclick="loginForm()">로그인</button>
+    <button class="btn btn-primary" onclick="paging()">글목록</button>
 </body>
 </html>
