@@ -8,10 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>시작페이지</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script>
+        const saveForm = () => {
+            location.href = "/member/saveForm";
+        }
+        const login = () => {
+            location.href = "/member/loginForm";
+        }
+        const findAll = () => {
+            location.href = "/board/findAll"
+        }
+    </script>
 </head>
 <body>
-    <h2>시작페이지</h2>
-
+    <button class="btn btn-primary" onclick="saveForm()">회원가입</button>
+    <button class="btn btn-primary" onclick="login()">로그인</button>
+    <button class="btn btn-primary" onclick="findAll()">글목록</button>
 </body>
 </html>
