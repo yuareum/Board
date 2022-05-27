@@ -5,15 +5,33 @@
 
 <mapper namespace="Member">
     <insert id="save" parameterType="member">
-        insert into members(memberId,memberPassword,memberName,memberEmail,memberMobile,memberProfileName)
+        insert into memberTable(memberId,memberPassword,memberName,memberEmail,memberMobile,memberProfileName)
         values(#{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile}, #{memberProfileName})
     </insert>
 
     <select id="duplicateCheck" parameterType="String" resultType="String">
-        select memberId from members where memberId = #{memberId}
+        select memberId from memberTable where memberId = #{memberId}
     </select>
 
-    <select id="login" parameterMap="member" resultType="member">
-        select * from members where memberId = #{memberId} and memberPassword = #{memberPassword}
+    <select id="login" parameterType="member" resultType="member">
+        select * from memberTable where memberId = #{memberId} and memberPassword = #{memberPassword}
+    </select>
+
+    <select id="findAll" resultType="member">
+        select * from memberTable
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="member">
+        select * from memberTable where id = #{id}
+    </select>
+
+    <select id="delete" parameterType="Long">
+        delete from memberTable where id = #{id};
+    </select>
+    <select id="pagingList" parameterType="java.util.HashMap" resultType="member">
+        select * from memberTable order by id desc limit #{start}, #{limit}
+    </select>
+    <select id="count" resultType="int">
+        select count(id) from memberTable
     </select>
 </mapper>

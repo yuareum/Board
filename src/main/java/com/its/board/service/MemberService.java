@@ -1,6 +1,8 @@
 package com.its.board.service;
 
+import com.its.board.dto.BoardDTO;
 import com.its.board.dto.MemberDTO;
+import com.its.board.dto.PageDTO;
 import com.its.board.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Member;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MemberService {
@@ -44,5 +50,52 @@ public class MemberService {
     public MemberDTO login(MemberDTO memberDTO) {
         return memberRepository.login(memberDTO);
 
+    }
+
+    public List<MemberDTO> findAll() {
+        List<MemberDTO> memberDTOList = memberRepository.findAll();
+        return memberDTOList;
+    }
+
+    public MemberDTO findById(Long id) {
+        return memberRepository.findById(id);
+    }
+
+    public boolean delete(Long id) {
+        int deleteResult = memberRepository.delete(id);
+        if(deleteResult > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    private static final int PAGE_LIMIT = 5;
+    private static final int BLOCK_LIMIT = 3;
+    public List<MemberDTO> pagingList(int page) {
+        int pagingStart = (page-1) * PAGE_LIMIT;
+        Map<String, Integer> pagingParam = new HashMap<>();
+        pagingParam.put("start", pagingStart);
+        pagingParam.put("limit", PAGE_LIMIT);
+        List<MemberDTO> pagingList = memberRepository.pagingList(pagingParam);
+        return pagingList;
+    }
+    public PageDTO paging(int page) {
+        int memberCount = memberRepository.memberCount(); // 글 갯수 조회
+        // 필요한 전체 페이지 갯수
+        // Math.ceil method -> 올림 처리.
+        int maxPage = (int)(Math.ceil((double)memberCount / PAGE_LIMIT));
+        // 시작페이지 1 4 7 10
+        int startPage = (((int)(Math.ceil((double)page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
+        //끝페이지 3, 6, 9, 12
+        int endPage = startPage + BLOCK_LIMIT - 1;
+        if(endPage > maxPage)
+            endPage = maxPage;
+        PageDTO paging = new PageDTO();
+        paging.setPage(page);
+        paging.setStartPage(startPage);
+        paging.setEndPage(endPage);
+        paging.setMaxPage(maxPage);
+        return paging;
     }
 }

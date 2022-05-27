@@ -4,6 +4,27 @@
 
 
 <mapper namespace="Board">
+    <insert id="save" parameterType="board">
+        insert into boardTable(boardTitle, boardWriter, boardContents, boardCreatedDate, boardFileName)
+        values (#{boardTitle}, #{boardWriter}, #{boardContents}, now(), #{boardFileName})
+    </insert>
+
+    <select id="boardList" parameterType="java.util.HashMap" resultType="board">
+        select * from boardTable order by id desc limit #{start}, #{limit}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(id) from boardTable
+    </select>
+
+    <update id="updateHits" parameterType="Long">
+        update boardTable set boardHits= boardHits+1 where id=#{id}
+    </update>
+
+    <select id="findById" parameterType="Long" resultType="board">
+        select * from boardTable where id = #{id}
+    </select>
+
 
 </mapper>
 

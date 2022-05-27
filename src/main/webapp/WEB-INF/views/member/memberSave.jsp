@@ -17,14 +17,16 @@
     <h2>회원가입</h2>
     <div class="form-floating">
         <form action="/member/save" method="post" enctype="multipart/form-data">
-            아이디<br><input type="text" class="form-control" onblur="duplicateCheck()" id="memberId" name="memberId" placeholder="아이디">
+            아이디<br><input type="text" class="form-control" onblur="duplicateCheck()" id="memberId" name="memberId" placeholder="아이디를 입력해주세요.">
             <span id="dup-check-result"></span><br>
-            비밀번호<br><input type="password" class="form-control" onblur="passwordCheck()" id="memberPassword" name="memberPassword" placeholder="비밀번호">
-            <span id="password-check-result"></span><br>
-            이름<br><input type="text" class="form-control" onblur="nameCheck()" id="memberName" name="memberName" placeholder="이름">
+            비밀번호<br><input type="password" class="form-control" onblur="password1Check()" id="memberPassword" name="memberPassword" placeholder="비밀번호를 입력해주세요.">
+            <span id="password1-check-result"></span><br>
+            비밀번호 재확인<br> <input type="password" class="form-control" onblur="password2Check()" id="memberPassword2" placeholder="비밀번호 다시 입력해주세요.">
+            <span id="password2-check-result"></span><br>
+            이름<br><input type="text" class="form-control" onblur="nameCheck()" id="memberName" name="memberName" placeholder="이름을 입력해주세요.">
             <span id="name-check-result"></span><br>
-            이메일<br><input type="text" class="form-control" name="memberEmail" placeholder="이메일"><br>
-            전화번호<br><input type="text" class="form-control" id="memberMobile" onblur="mobileCheck()" name="memberMobile" placeholder="전화번호">
+            이메일<br><input type="text" class="form-control" name="memberEmail" placeholder="이메일을 입력해주세요."><br>
+            전화번호<br><input type="text" class="form-control" id="memberMobile" onblur="mobileCheck()" name="memberMobile" placeholder="전화번호를 입력해주세요.">
             <span id="mobile-check-result"></span><br>
             프로필 사진 : <input type="file" name="memberProfile"><br>
             <input type="submit" class="btn btn-outline-success" value="회원가입">
@@ -40,7 +42,7 @@
         if(memberId.match(exp)) {
             $.ajax({
                 type: "post",
-                url: "/member/duplicate-check",
+                url: "/member/duplicateCheck",
                 data: {"memberId": memberId},
                 dataType: "text",
                 success: function (result) {
@@ -68,9 +70,9 @@
             }
         }
     }
-    const passwordCheck = () => {
+    const password1Check = () => {
         const memberPassword = document.getElementById("memberPassword").value;
-        const checkResult = document.getElementById("password-check-result");
+        const checkResult = document.getElementById("password1-check-result");
         const exp  = /[A-Za-z\d-_!#$.]{8,16}$/;
         if(memberPassword.match(exp)){
             checkResult.innerHTML = "사용가능한 비밀번호입니다.";
@@ -83,6 +85,25 @@
             }
             else{
                 checkResult.innerHTML = " 8~16자의 영문 대 소문자, 숫자, 특수문자(-,_,!,#,$,.)만 사용가능합니다.";
+                checkResult.style.color = "red";
+            }
+        }
+    }
+    const password2Check = () => {
+        const memberpassword = document.getElementById("memberPassword").value;
+        const memberpassword2 = document.getElementById("memberPassword2").value;
+        const checkResult = document.getElementById("password2-check-result");
+        if(memberpassword == memberpassword2){
+            checkResult.innerHTML = "비밀번호가 일치합니다.";
+            checkResult.style.color = "green";
+        }
+        else{
+            if(memberpassword2.length == 0){
+                checkResult.innerHTML = "필수입력입니다.";
+                checkResult.style.color = "red";
+            }
+            else{
+                checkResult.innerHTML = "비밀번호가 일치하지 않습니다.";
                 checkResult.style.color = "red";
             }
         }
