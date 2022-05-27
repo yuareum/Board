@@ -26,7 +26,7 @@
         작성일자:  ${board.boardCreatedDate} <br>
         <img src="${pageContext.request.contextPath}/upload/${board.boardFileName}"
              alt="" height="100" width="100"><br>
-        <c:if test="${sessionScope.loginId eq board.id}">
+        <c:if test="${sessionScope.loginMemberId eq board.boardWriter}">
             <button onclick="boardUpdate()" class="btn btn-primary">글 수정</button>
             <button onclick="boardDelete()" class="btn btn-danger">글 삭제</button>
         </c:if>

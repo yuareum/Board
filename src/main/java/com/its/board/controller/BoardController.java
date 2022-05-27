@@ -30,7 +30,7 @@ public class BoardController {
     public String save(HttpSession session, BoardDTO boardDTO) throws IOException {
         boolean saveResult = boardService.save(boardDTO);
         if(saveResult){
-            return "redirect:/board/boardList";
+            return "redirect:/board/findAll";
         }
         else{
             return "saveFail";
