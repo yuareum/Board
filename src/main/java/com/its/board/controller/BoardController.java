@@ -36,9 +36,9 @@ public class BoardController {
             return "saveFail";
         }
     }
-    @GetMapping("/boardList")
-    public String boardList(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model){
-        List<BoardDTO> boardList = boardService.boardList(page);
+    @GetMapping("/findAll")
+    public String findAll(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model){
+        List<BoardDTO> boardList = boardService.findAll(page);
         PageDTO paging = boardService.paging(page);
         model.addAttribute("boardList", boardList);
         model.addAttribute("paging", paging);
@@ -50,7 +50,7 @@ public class BoardController {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
         model.addAttribute("page", page);
-        return "board/detail";
+        return "board/boardDetail";
     }
 
 

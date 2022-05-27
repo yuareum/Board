@@ -36,12 +36,12 @@ public class BoardService {
     }
     private static final int PAGE_LIMIT = 5;
     private static final int BLOCK_LIMIT = 3;
-    public List<BoardDTO> boardList(int page) {
+    public List<BoardDTO> findAll(int page) {
         int pagingStart = (page-1) * PAGE_LIMIT;
         Map<String, Integer> pagingParam = new HashMap<>();
         pagingParam.put("start", pagingStart);
         pagingParam.put("limit", PAGE_LIMIT);
-        List<BoardDTO> boardList = boardRepository.boardList(pagingParam);
+        List<BoardDTO> boardList = boardRepository.findAll(pagingParam);
         return boardList;
     }
 

@@ -19,12 +19,12 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @GetMapping("/save-form")
+    @GetMapping("/save")
     public String saveForm(){
         return "member/memberSave";
     }
     @PostMapping("/save")
-    public String saveForm(@ModelAttribute MemberDTO memberDTO) throws IOException {
+    public String save(@ModelAttribute MemberDTO memberDTO) throws IOException {
         boolean saveResult = memberService.save(memberDTO);
         if(saveResult){
             return "member/login";
@@ -33,11 +33,11 @@ public class MemberController {
             return "saveFall";
         }
     }
-    @GetMapping("/login-form")
+    @GetMapping("/login")
     public String loginForm(){
         return "member/login";
     }
-    @PostMapping("/duplicateCheck")
+    @PostMapping("/duplicate-check")
     public @ResponseBody String duplicateCheck(@RequestParam("memberId") String memberId){
         String checkResult = memberService.duplicateCheck(memberId);
         return checkResult;
@@ -49,7 +49,7 @@ public class MemberController {
             model.addAttribute("loginMember", loginMember);
             session.setAttribute("loginMemberId", loginMember.getMemberId());
             session.setAttribute("loginId", loginMember.getId());
-            return "redirect:/board/boardList";
+            return "redirect:/board/findAll";
         }
         else{
             return "member/login";
@@ -65,10 +65,14 @@ public class MemberController {
         return "member/admin";
     }
 
-    @GetMapping("/detail-ajax")
-    public @ResponseBody MemberDTO findByIdlAjax(@RequestParam("id") Long id){
+    @GetMapping("/detail")
+    public String findById(@RequestParam("id") Long id, Model model,
+    @RequestParam(value = "page", required = false, defaultValue = "1") int page){
         MemberDTO memberDTO = memberService.findById(id);
-        return memberDTO;
+        PageDTO paging = memberService.paging(page);
+        model.addAttribute("member", memberDTO);
+        model.addAttribute("paging", paging);
+        return "member/memberDetail";
     }
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id){

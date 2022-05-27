@@ -19,7 +19,7 @@
                 location.href = "/board/save"
             </c:if>
             <c:if test="${sessionScope.loginMemberId == null}">
-                location.href = "/member/login-form"
+                location.href = "/member/login"
             </c:if>
         }
     </script>

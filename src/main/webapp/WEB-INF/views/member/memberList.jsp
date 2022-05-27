@@ -20,12 +20,10 @@
     <table>
         <table class="table">
             <tr>
-                <th>id</th>
-                <th>memberId</th>
-                <th>memberPassword</th>
-                <th>memberName</th>
-                <th>memberEmail</th>
-                <th>memberMobile</th>
+                <th>회원번호</th>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>이메일</th>
                 <th>조회</th>
                 <th>삭제</th>
             </tr>
@@ -33,11 +31,9 @@
                 <tr>
                     <td>${member.id}</td>
                     <td>${member.memberId}</td>
-                    <td>${member.memberPassword}</td>
                     <td>${member.memberName}</td>
                     <td>${member.memberEmail}</td>
-                    <td>${member.memberMobile}</td>
-                    <td><button class="btn btn-outline-info" onclick="detailByAjax('${member.id}')">조회</button></td>
+                    <td><button class="btn btn-outline-info" onclick="location.href='/member/detail?id=${member.id}'">조회</button></td>
                     <td><a href="/member/delete?id=${member.id}">삭제</a></td>
                 </tr>
             </c:forEach>
@@ -95,38 +91,5 @@
     </ul>
 </div>
 </body>
-<script>
-    const detailByAjax = (id) => {
-        console.log(id);
-        const detail = document.getElementById("detail");
-        $.ajax({
-            type: "get", // http request method
-            url: "detail-ajax", // 요청주소(컨트롤러 주소값)
-            data: {"id": id}, // 전송하는 파라미터
-            dataType: "json", // 리턴받을 데이터 형식
-            success: function (result) {
-                let output = "<table class='table'>";
-                output += "<tr>" +
-                    "<th>id</th> <th>memberId</th> <th>memberPassword</th> <th>memberName</th>" +
-                    "<th>memberEmail</th> <th>memberMobile</th> " +
-                    "</tr>";
-                output += "<tr>";
-                output += "<td>" + result.id                  + "</td>";
-                output += "<td>" + result.memberId            + "</td>";
-                output += "<td>" + result.memberPassword      + "</td>";
-                output += "<td>" + result.memberName          + "</td>";
-                output += "<td>" + result.memberEmail          + "</td>";
-                output += "<td>" + result.memberMobile         + "</td>";
-                output += "</tr>";
-                output += "</table>";
 
-                detail.innerHTML = output;
-            },
-            error: function () {
-                alert("오타체크");
-            }
-        });
-
-    }
-</script>
 </html>

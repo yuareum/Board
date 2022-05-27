@@ -16,7 +16,7 @@ public class BoardRepository {
         return sql.insert("Board.save", boardDTO);
     }
 
-    public List<BoardDTO> boardList(Map<String, Integer> pagingParam) {
+    public List<BoardDTO> findAll(Map<String, Integer> pagingParam) {
         return sql.selectList("Board.boardList",pagingParam);
     }
 

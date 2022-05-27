@@ -26,7 +26,8 @@
             이름<br><input type="text" class="form-control" onblur="nameCheck()" id="memberName" name="memberName" placeholder="이름을 입력해주세요.">
             <span id="name-check-result"></span><br>
             이메일<br><input type="text" class="form-control" name="memberEmail" placeholder="이메일을 입력해주세요."><br>
-            전화번호<br><input type="text" class="form-control" id="memberMobile" onblur="mobileCheck()" name="memberMobile" placeholder="전화번호를 입력해주세요.">
+            전화번호<br>
+            <input type="text" class="form-control" id="memberMobile" onblur="mobileCheck()" name="memberMobile" placeholder="전화번호 11자리를 입력해주세요.(-포함) ex)010-1111-1111">
             <span id="mobile-check-result"></span><br>
             프로필 사진 : <input type="file" name="memberProfile"><br>
             <input type="submit" class="btn btn-outline-success" value="회원가입">
@@ -42,7 +43,7 @@
         if(memberId.match(exp)) {
             $.ajax({
                 type: "post",
-                url: "/member/duplicateCheck",
+                url: "/member/duplicate-check",
                 data: {"memberId": memberId},
                 dataType: "text",
                 success: function (result) {
@@ -129,7 +130,7 @@
     const mobileCheck = () => {
         const memberMobile = document.getElementById("memberMobile").value;
         const checkResult = document.getElementById("mobile-check-result");
-        const exp = /^(\d{11})$/;
+        const exp = /^\d{3}-\d{4}-\d{4}$/;
         if(memberMobile.match(exp)){
             checkResult.innerHTML = "사용가능한 전화번호입니다.";
             checkResult.style.color = "green";
@@ -140,7 +141,7 @@
                 checkResult.style.color = "red";
             }
             else{
-                checkResult.innerHTML = "숫자로 된 11자리가 아닙니다."
+                checkResult.innerHTML = "숫자로 된 11자리(- 포함)가 아닙니다."
                 checkResult.style.color = "red";
             }
         }

@@ -5,33 +5,33 @@
 
 <mapper namespace="Member">
     <insert id="save" parameterType="member">
-        insert into memberTable(memberId,memberPassword,memberName,memberEmail,memberMobile,memberProfileName)
+        insert into board_member(memberId,memberPassword,memberName,memberEmail,memberMobile,memberProfileName)
         values(#{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile}, #{memberProfileName})
     </insert>
 
     <select id="duplicateCheck" parameterType="String" resultType="String">
-        select memberId from memberTable where memberId = #{memberId}
+        select memberId from board_member where memberId = #{memberId}
     </select>
 
     <select id="login" parameterType="member" resultType="member">
-        select * from memberTable where memberId = #{memberId} and memberPassword = #{memberPassword}
+        select * from board_member where memberId = #{memberId} and memberPassword = #{memberPassword}
     </select>
 
     <select id="findAll" resultType="member">
-        select * from memberTable
+        select * from board_member
     </select>
 
     <select id="findById" parameterType="Long" resultType="member">
-        select * from memberTable where id = #{id}
+        select * from board_member where id = #{id}
     </select>
 
     <select id="delete" parameterType="Long">
-        delete from memberTable where id = #{id};
+        delete from board_member where id = #{id}
     </select>
     <select id="pagingList" parameterType="java.util.HashMap" resultType="member">
-        select * from memberTable order by id desc limit #{start}, #{limit}
+        select * from board_member order by id desc limit #{start}, #{limit}
     </select>
     <select id="count" resultType="int">
-        select count(id) from memberTable
+        select count(id) from board_member
     </select>
 </mapper>

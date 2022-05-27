@@ -13,13 +13,13 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script>
         const saveForm = () => {
-            location.href = "/member/save-form";
+            location.href = "/member/save";
         }
         const loginForm = () => {
-            location.href = "/member/login-form";
+            location.href = "/member/login";
         }
         const boardList = () => {
-            location.href = "/board/boardList"
+            location.href = "/board/findAll"
         }
         const logout = () => {
             location.href = "/member/logout"
@@ -29,7 +29,7 @@
             location.href = "/board/save"
             </c:if>
             <c:if test="${sessionScope.loginMemberId == null}">
-            location.href = "/member/login-form"
+            location.href = "/member/login"
             </c:if>
         }
         const admin = () => {

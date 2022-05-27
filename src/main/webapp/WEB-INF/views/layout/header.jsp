@@ -13,12 +13,12 @@
     <header>
         <a href="/">Home</a>
         <c:if test="${sessionScope.loginMemberId == null}">
-            <a href="/member/save-form">회원가입</a>
+            <a href="/member/save">회원가입</a>
         </c:if>&nbsp;
         <c:if test="${sessionScope.loginMemberId == null}">
-            <a href="/member/login-form">로그인</a>
+            <a href="/member/login">로그인</a>
         </c:if>
-        <a href="/board/boardList">글목록</a>
+        <a href="/board/findAll">글목록</a>
         <c:if test="${sessionScope.loginMemberId != null}">
             <a href="/member/logout">로그아웃</a>
         </c:if>

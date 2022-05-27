@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Member;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,12 +82,8 @@ public class MemberService {
     }
     public PageDTO paging(int page) {
         int memberCount = memberRepository.memberCount(); // 글 갯수 조회
-        // 필요한 전체 페이지 갯수
-        // Math.ceil method -> 올림 처리.
         int maxPage = (int)(Math.ceil((double)memberCount / PAGE_LIMIT));
-        // 시작페이지 1 4 7 10
         int startPage = (((int)(Math.ceil((double)page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
-        //끝페이지 3, 6, 9, 12
         int endPage = startPage + BLOCK_LIMIT - 1;
         if(endPage > maxPage)
             endPage = maxPage;

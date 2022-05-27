@@ -12,5 +12,7 @@
 </head>
 <body>
     <h2>게시글</h2>
+    <div ></div>
+
 </body>
 </html>
