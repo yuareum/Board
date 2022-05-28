@@ -21,7 +21,7 @@ public class MemberController {
 
     @GetMapping("/save")
     public String saveForm(){
-        return "member/memberSave";
+        return "member/save";
     }
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO) throws IOException {
@@ -72,7 +72,7 @@ public class MemberController {
         PageDTO paging = memberService.paging(page);
         model.addAttribute("member", memberDTO);
         model.addAttribute("paging", paging);
-        return "member/memberDetail";
+        return "member/detail";
     }
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id){
@@ -90,7 +90,7 @@ public class MemberController {
         PageDTO paging = memberService.paging(page);
         model.addAttribute("memberList", memberList);
         model.addAttribute("paging", paging);
-        return "member/memberList";
+        return "member/list";
     }
 
 }

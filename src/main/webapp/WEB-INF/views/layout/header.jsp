@@ -12,14 +12,14 @@
     <title>Title</title>
     <header>
         <a href="/">Home</a>
-        <c:if test="${sessionScope.loginMemberId == null}">
+        <c:if test="${empty sessionScope.loginMemberId}">
             <a href="/member/save">회원가입</a>
         </c:if>&nbsp;
-        <c:if test="${sessionScope.loginMemberId == null}">
+        <c:if test="${empty sessionScope.loginMemberId}">
             <a href="/member/login">로그인</a>
         </c:if>
         <a href="/board/findAll">글목록</a>
-        <c:if test="${sessionScope.loginMemberId != null}">
+        <c:if test="${!empty sessionScope.loginMemberId}">
             <a href="/member/logout">로그아웃</a>
         </c:if>
     </header>

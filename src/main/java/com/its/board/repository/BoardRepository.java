@@ -31,4 +31,12 @@ public class BoardRepository {
     public BoardDTO findById(Long id) {
         return sql.selectOne("Board.findById", id);
     }
+
+    public List<BoardDTO> search(Map<String, String> searchParam) {
+        return sql.selectList("Board.search",searchParam);
+    }
+
+    public void update(BoardDTO boardDTO) {
+        sql.update("Board.update",boardDTO);
+    }
 }

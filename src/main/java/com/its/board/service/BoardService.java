@@ -46,13 +46,9 @@ public class BoardService {
     }
 
     public PageDTO paging(int page) {
-        int boardCount = boardRepository.boardCount(); // 글 갯수 조회
-        // 필요한 전체 페이지 갯수
-        // Math.ceil method -> 올림 처리.
+        int boardCount = boardRepository.boardCount();
         int maxPage = (int)(Math.ceil((double)boardCount / PAGE_LIMIT));
-        // 시작페이지 1 4 7 10
         int startPage = (((int)(Math.ceil((double)page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
-        //끝페이지 3, 6, 9, 12
         int endPage = startPage + BLOCK_LIMIT - 1;
         if(endPage > maxPage)
             endPage = maxPage;
@@ -68,5 +64,17 @@ public class BoardService {
         boardRepository.updateHits(id);
         BoardDTO boardDTO = boardRepository.findById(id);
         return boardDTO;
+    }
+
+    public List<BoardDTO> search(String searchType, String q) {
+        Map<String, String> searchParam = new HashMap<>();
+        searchParam.put("type", searchType);
+        searchParam.put("q", q);
+        List<BoardDTO> searchList = boardRepository.search(searchParam);
+        return searchList;
+    }
+
+    public void update(BoardDTO boardDTO) {
+        boardRepository.update(boardDTO);
     }
 }

@@ -25,6 +25,13 @@
         select * from board where id = #{id}
     </select>
 
+    <select id="search" parameterType="java.util.HashMap" resultType="board">
+        select * from board where ${type} like concat('%', #{q}, '%') order by id desc;
+    </select>
+
+    <update id="update" parameterType="board">
+        update board set boardTitle = #{boardTitle}, boardContents = #{boardContents} , boardFileName = #{boardFileName} where id = #{id}
+    </update>
 
 </mapper>
 

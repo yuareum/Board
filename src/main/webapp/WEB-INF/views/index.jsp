@@ -25,10 +25,10 @@
             location.href = "/member/logout"
         }
         const boardSave = () => {
-            <c:if test="${sessionScope.loginMemberId != null}">
+            <c:if test="${!empty sessionScope.loginMemberId}">
             location.href = "/board/save"
             </c:if>
-            <c:if test="${sessionScope.loginMemberId == null}">
+            <c:if test="${empty sessionScope.loginMemberId}">
             location.href = "/member/login"
             </c:if>
         }

@@ -30,6 +30,7 @@
             <input type="text" class="form-control" id="memberMobile" onblur="mobileCheck()" name="memberMobile" placeholder="전화번호 11자리를 입력해주세요.(-포함) ex)010-1111-1111">
             <span id="mobile-check-result"></span><br>
             프로필 사진 : <input type="file" name="memberProfile"><br>
+            <input type="button" class="btn btn-primary" onclick="location.href='/'" value="Home">
             <input type="submit" class="btn btn-outline-success" value="회원가입">
         </form>
     </div>

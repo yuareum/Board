@@ -17,31 +17,26 @@
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container">
     <h2>회원목록</h2>
-    <table>
-        <table class="table">
+    <button class="btn btn-primary" onclick="location.href='/member/admin'">관리자 페이지로 이동</button>
+    <table class="table">
+        <tr>
+            <th>회원번호</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>조회</th>
+            <th>삭제</th>
+        </tr>
+        <c:forEach items="${memberList}" var="member">
             <tr>
-                <th>회원번호</th>
-                <th>아이디</th>
-                <th>이름</th>
-                <th>이메일</th>
-                <th>조회</th>
-                <th>삭제</th>
+                <td>${member.id}</td>
+                <td>${member.memberId}</td>
+                <td>${member.memberName}</td>
+                <td>${member.memberEmail}</td>
+                <td><button class="btn btn-outline-info" onclick="location.href='/member/detail?id=${member.id}'">조회</button></td>
+                <td><a href="/member/delete?id=${member.id}">삭제</a></td>
             </tr>
-            <c:forEach items="${memberList}" var="member">
-                <tr>
-                    <td>${member.id}</td>
-                    <td>${member.memberId}</td>
-                    <td>${member.memberName}</td>
-                    <td>${member.memberEmail}</td>
-                    <td><button class="btn btn-outline-info" onclick="location.href='/member/detail?id=${member.id}'">조회</button></td>
-                    <td><a href="/member/delete?id=${member.id}">삭제</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-
-        <div id="detail">
-
-        </div>
+        </c:forEach>
     </table>
 </div>
 <div class="container">
