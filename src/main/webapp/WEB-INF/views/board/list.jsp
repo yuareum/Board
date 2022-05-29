@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script>
         const boardSave = () => {
-            <c:if test="${sessionScope.loginMemberId != null}">
+            <c:if test="${!empty sessionScope.loginMemberId}">
                 location.href = "/board/save"
             </c:if>
-            <c:if test="${sessionScope.loginMemberId == null}">
+            <c:if test="${empty sessionScope.loginMemberId}">
                 location.href = "/member/login"
             </c:if>
         }

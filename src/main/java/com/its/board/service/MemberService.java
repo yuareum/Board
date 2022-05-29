@@ -94,4 +94,8 @@ public class MemberService {
         paging.setMaxPage(maxPage);
         return paging;
     }
+
+    public void update(MemberDTO memberDTO) {
+        memberRepository.update(memberDTO);
+    }
 }

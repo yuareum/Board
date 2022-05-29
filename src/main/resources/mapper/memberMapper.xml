@@ -31,7 +31,12 @@
     <select id="pagingList" parameterType="java.util.HashMap" resultType="member">
         select * from board_member order by id desc limit #{start}, #{limit}
     </select>
+
     <select id="count" resultType="int">
         select count(id) from board_member
     </select>
+
+    <update id="update" parameterType="member">
+        update board_member set memberEmail = #{memberEmail}, memberMobile=#{memberMobile} , memberProfileName = #{memberProfileName} where id= #{id}
+    </update>
 </mapper>

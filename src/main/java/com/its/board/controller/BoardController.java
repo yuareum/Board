@@ -21,6 +21,7 @@ public class BoardController {
     private BoardService boardService;
     @Autowired
     private CommentService commentService;
+
     @GetMapping("/save")
     public String saveForm(){
         return "board/save";
@@ -73,5 +74,17 @@ public class BoardController {
     public String update(@ModelAttribute BoardDTO boardDTO) {
         boardService.update(boardDTO);
         return "redirect:/board/detail?id=" + boardDTO.getId();
+    }
+    @GetMapping("/boardWriterCheck")
+    public String boardWriterCheck(@RequestParam("id") Long id, Model model){
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "board/boardWriterCheck";
+    }
+
+    @GetMapping ("/delete")
+    public String delete(@RequestParam("id") Long id){
+         boardService.delete(id);
+         return "redirect:/board/findAll";
     }
 }

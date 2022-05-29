@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Controller
@@ -91,6 +92,24 @@ public class MemberController {
         model.addAttribute("memberList", memberList);
         model.addAttribute("paging", paging);
         return "member/list";
+    }
+    @GetMapping("/myPage")
+    public String myPage(@RequestParam("id") Long id, Model model){
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute(memberDTO);
+        return "member/myPage";
+    }
+
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("id") Long id, Model model){
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute(memberDTO);
+        return "member/update";
+    }
+    @PostMapping("/update")
+    public String update(MemberDTO memberDTO){
+        memberService.update(memberDTO);
+        return "redirect:/member/myPage";
     }
 
 }

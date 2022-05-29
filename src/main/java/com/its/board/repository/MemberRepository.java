@@ -43,4 +43,8 @@ public class MemberRepository {
     public int memberCount() {
         return sql.selectOne("Member.count");
     }
+
+    public void update(MemberDTO memberDTO) {
+         sql.update("Member.update", memberDTO);
+    }
 }

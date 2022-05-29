@@ -9,52 +9,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>시작페이지</title>
+    <title>index</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <script>
-        const saveForm = () => {
-            location.href = "/member/save";
-        }
-        const loginForm = () => {
-            location.href = "/member/login";
-        }
-        const boardList = () => {
-            location.href = "/board/findAll"
-        }
-        const logout = () => {
-            location.href = "/member/logout"
-        }
-        const boardSave = () => {
-            <c:if test="${!empty sessionScope.loginMemberId}">
-            location.href = "/board/save"
-            </c:if>
-            <c:if test="${empty sessionScope.loginMemberId}">
-            location.href = "/member/login"
-            </c:if>
-        }
-        const admin = () => {
-            location.href = "/member/admin"
-        }
-    </script>
 </head>
 <body>
-    <c:if test="${sessionScope.loginMemberId == null}">
-    <button class="btn btn-primary" onclick="saveForm()">회원가입</button>
-    </c:if>
 
-    <c:if test="${sessionScope.loginMemberId == null}">
-    <button class="btn btn-primary" id="loginCheck" onclick="loginForm()">로그인</button>
-    </c:if>
+<div class="b-example-divider"></div>
 
-    <button class="btn btn-primary" onclick="boardList()">글목록</button>
-
-    <button class="btn btn-primary" onclick="boardSave()">글작성</button>
-
-    <c:if test="${sessionScope.loginMemberId != null}">
-        <button class="btn btn-danger" onclick="logout()">로그아웃</button>
-    </c:if>
-    <c:if test="${sessionScope.loginMemberId eq 'admin'}">
-        <button class="btn btn-outline-info" onclick="admin()">관리자 페이지로 이동</button>
-    </c:if>
+<div class="container">
+    <div class="container">
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+                <c:if test="${empty sessionScope.loginMemberId}">
+                <li class="nav-item"><a href="/member/save" class="nav-link">회원가입</a></li>
+                </c:if>
+                <li class="nav-item"><a href="/board/findAll" class="nav-link">글 목록</a></li>
+                <c:if test="${sessionScope.loginMemberId eq 'admin'}">
+                    <li class="nav-item"><a href="/member/admin" class="nav-link">관리자 페이지</a></li>
+                </c:if>
+                <c:if test="${!empty sessionScope.loginMemberId}">
+                <li class="nav-item"><a href="/board/myPage?id=${sessionScope.loginId}" class="nav-link">My Page</a></li>
+                </c:if>
+                <c:if test="${empty sessionScope.loginMemberId}">
+                    <li class="nav-item"><a href="/member/login" class="nav-link">Login</a></li>
+                </c:if>
+                <c:if test="${!empty sessionScope.loginMemberId}">
+                    <li class="nav-item"><a href="/member/logout" class="nav-link">Logout</a></li>
+                </c:if>
+            </ul>
+        </header>
+    </div>
+</div>
 </body>
 </html>

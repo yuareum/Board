@@ -30,10 +30,7 @@
         <c:if test="${sessionScope.loginMemberId eq board.boardWriter}">
             <button onclick="boardUpdate()" class="btn btn-primary">글 수정</button>
         </c:if>
-        <c:if test="${sessionScope.loginMemberId eq board.boardWriter and sessionScope.loginMemberId ne 'admin'}">
-            <button onclick="boardDelete()" class="btn btn-danger">글 삭제</button>
-        </c:if>
-        <c:if test="${sessionScope.loginMemberId eq 'admin'}">
+        <c:if test="${sessionScope.loginMemberId eq board.boardWriter || sessionScope.loginMemberId eq 'admin'}">
             <button onclick="boardDelete()" class="btn btn-danger">글 삭제</button>
         </c:if>
     </div>
@@ -91,8 +88,9 @@
     }
 
     const boardDelete = () => {
-        location.href = "/board/delete?id=${board.id}";
+        location.href = "/board/boardWriterCheck?id=${board.id}";
     }
+
 
     const commentWriterCheck = () => {
         const commentWriter = document.getElementById("commentWriter").value;
