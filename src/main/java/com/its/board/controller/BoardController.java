@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -74,12 +73,6 @@ public class BoardController {
     public String update(@ModelAttribute BoardDTO boardDTO) {
         boardService.update(boardDTO);
         return "redirect:/board/detail?id=" + boardDTO.getId();
-    }
-    @GetMapping("/boardWriterCheck")
-    public String boardWriterCheck(@RequestParam("id") Long id, Model model){
-        BoardDTO boardDTO = boardService.findById(id);
-        model.addAttribute("board", boardDTO);
-        return "board/boardWriterCheck";
     }
 
     @GetMapping ("/delete")
