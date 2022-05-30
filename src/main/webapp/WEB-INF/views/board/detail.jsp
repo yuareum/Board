@@ -28,6 +28,9 @@
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
     <div class="container">
         <h3>게시글 상세 보기</h3>
+        <table>
+            <tr></tr>
+        </table>
         제목:  ${board.boardTitle} <br>
         글번호:  ${board.id} <br>
         작성자:  ${board.boardWriter} <br>

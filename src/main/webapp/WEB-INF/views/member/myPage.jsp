@@ -15,7 +15,7 @@
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container">
     <h2>My Page</h2>
-    <button class="btn btn-outline-dark" onclick="location.href='/member/update?id=${member.id}'">회원 정보 수정</button>
+    <button class="btn btn-outline-dark" stylonclick="location.href='/member/update?id=${member.id}'">회원 정보 수정</button>
 </div>
 <div class="container">
     <h3>Profile</h3>
