@@ -98,4 +98,8 @@ public class MemberService {
     public void update(MemberDTO memberDTO) {
         memberRepository.update(memberDTO);
     }
+
+    public void updatePassword(MemberDTO memberDTO) {
+        memberRepository.updatePassword(memberDTO);
+    }
 }

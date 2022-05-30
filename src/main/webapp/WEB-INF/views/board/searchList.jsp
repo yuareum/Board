@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>게시판 글 목록</title>
+    <title>게시판 조회</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script>
         const boardSave = () => {
@@ -27,10 +27,6 @@
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container">
     <h2>조회</h2>
-    <button class="btn btn-outline-success" onclick="boardSave()">글 작성</button>
-    <c:if test="${sessionScope.loginMemberId eq 'admin'}">
-        <button class="btn btn-outline-success" onclick="location.href='/member/admin'">관리자 페이지로 이동</button>
-    </c:if>
     <div class="container mt-3">
         <form action="/board/search" method="get">
             <select name="searchType">

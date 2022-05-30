@@ -27,11 +27,8 @@
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container">
-    <h2>글 목록</h2>
-    <button class="btn btn-outline-success" onclick="boardSave()">글 작성</button>
-    <c:if test="${sessionScope.loginMemberId eq 'admin'}">
-        <button class="btn btn-outline-success" onclick="location.href='/member/admin'">관리자 페이지로 이동</button>
-    </c:if>
+    <h2>게시글 목록</h2>
+    <button class="btn btn-outline-success" style=" float: right;" onclick="boardSave()">글 작성</button>
     <div class="container mt-3">
         <form action="/board/search" method="get">
             <select name="searchType">
@@ -110,7 +107,5 @@
             </c:choose>
         </ul>
     </div>
-
-
 </body>
 </html>

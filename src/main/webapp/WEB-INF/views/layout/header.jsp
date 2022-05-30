@@ -10,34 +10,41 @@
 <html>
 <head>
     <title>Title</title>
-
-    <div class="container">
-        <header class="d-flex justify-content-center py-3">
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            </ul>
+        <header>
+            <nav>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <c:if test="${empty sessionScope.loginMemberId}">
+                            <a class="nav-link" href="/member/save">회원가입</a>
+                        </c:if>
+                    </li>
+                    <li class="nav-item">
+                        <c:if test="${empty sessionScope.loginMemberId}">
+                            <a class="nav-link" href="/member/login">로그인</a>
+                        </c:if>
+                    </li>
+                    <li class="nav-item">
+                        <c:if test="${!empty sessionScope.loginMemberId}">
+                            <a class="nav-link" href="/member/logout">로그아웃</a>
+                        </c:if>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/board/findAll">글 목록</a></li>
+                    <li class="nav-item">
+                        <c:if test="${sessionScope.loginMemberId eq 'admin'}">
+                            <a class="nav-link" href="/member/admin">관리자 페이지</a>
+                        </c:if>
+                    </li>
+                    <li class="nav-item">
+                        <c:if test="${!empty sessionScope.loginMemberId}">
+                            <a class="nav-link" href="/member/myPage?id=${sessionScope.loginId}">My Page</a>
+                        </c:if>
+                    </li>
+                </ul>
+            </nav>
         </header>
-    </div>
-    <header>
-        <a href="/">Home</a>
-        <c:if test="${empty sessionScope.loginMemberId}">
-            <a href="/member/save">회원가입</a>
-        </c:if>&nbsp;
-        <c:if test="${empty sessionScope.loginMemberId}">
-            <a href="/member/login">로그인</a>
-        </c:if>
-        <a href="/board/findAll">글목록</a>
-        <c:if test="${!empty sessionScope.loginMemberId}">
-            <a href="/member/logout">로그아웃</a>
-        </c:if>
-        <c:if test="${!empty sessionScope.loginMemberId}">
-            <a href="/member/myPage">My Page</a>
-        </c:if>
-    </header>
 </head>
 <body>
 </body>

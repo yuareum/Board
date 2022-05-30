@@ -39,4 +39,5 @@
     <update id="update" parameterType="member">
         update board_member set memberEmail = #{memberEmail}, memberMobile=#{memberMobile} , memberProfileName = #{memberProfileName} where id= #{id}
     </update>
+
 </mapper>

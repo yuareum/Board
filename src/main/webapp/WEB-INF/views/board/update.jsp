@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>update.jsp</h2>
+    <h2>게시글 수정</h2>
     <div class="text-center"></div>
     <form action="/board/update" method="post" name="updateForm">
         글번호  <input type="text" class="form-control" name="id" value="${updateBoard.id}" readonly><br>
@@ -33,7 +33,7 @@
 <script>
     const boardUpdate = () => {
         const boardWriter = document.getElementById("boardWriter").value;
-        if(boardWriter === "${sessionScope.loginMemberId}"){
+        if(boardWriter == "${sessionScope.loginMemberId}"){
             updateForm.submit();
         }
         else{

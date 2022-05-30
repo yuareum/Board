@@ -14,17 +14,26 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script src="/resources/js/jquery.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <style>
+        .container{
+            margin:  20px;
+            max-width: 1000px;
+        }
+        #comment-write {
+            max-width: 600px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
-    <h2>게시글 상세 조회</h2>
     <div class="container">
-        글번호:  ${board.id} <br>
+        <h3>게시글 상세 보기</h3>
         제목:  ${board.boardTitle} <br>
+        글번호:  ${board.id} <br>
         작성자:  ${board.boardWriter} <br>
-        내용:  ${board.boardContents} <br>
         조회수:  ${board.boardHits} <br>
         작성일자:  ${board.boardCreatedDate} <br>
+        <textarea class="form-control" readonly>${board.boardContents}</textarea>
         <img src="${pageContext.request.contextPath}/upload/${board.boardFileName}"
              alt="" height="100" width="100"><br>
         <c:if test="${sessionScope.loginMemberId eq board.boardWriter}">
@@ -36,8 +45,8 @@
     </div>
 
     <div class="container">
-        <p>댓글</p>
         <div id="comment-write" class="input-group mb-3">
+            <p>댓글 입력</p>
             <div class="form-floating">
                 <input type="text" id="commentWriter" class="form-control" value="${sessionScope.loginMemberId}" placeholder="작성자" readonly>
                 <label for="commentWriter">작성자</label>
@@ -49,12 +58,24 @@
             <button id="comment-write-btn" class="btn btn-primary">댓글작성</button>
         </div>
 
-        <p>해당 게시글에 작성된 댓글</p>
         <div id="comment-list">
-            <c:forEach items="${commentList}" var="comment">
-                ${comment.commentWriter} &nbsp; <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${comment.commentCreatedDate}"></fmt:formatDate><br>
-                <input type="text" class="form-control" readonly value="${comment.commentContents}">
-            </c:forEach>
+            <p>작성된 댓글</p>
+            <table class="table">
+                <tr>
+                    <td>댓글번호</td>
+                    <td>작성자</td>
+                    <td>내용</td>
+                    <td>작성시간</td>
+                </tr>
+                <c:forEach items="${commentList}" var="comment">
+                    <tr>
+                        <td>${comment.id}</td>
+                        <td>${comment.commentWriter}</td>
+                        <td>${comment.commentContents}</td>
+                        <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${comment.commentCreatedDate}"></fmt:formatDate></td>
+                    </tr>
+                </c:forEach>
+            </table>
         </div>
     </div>
 </body>
@@ -71,7 +92,23 @@
                 dataType: "json",
                 success: function (result) {
                     console.log(result);
-                    location.href = "/board/detail?id=${board.id}";
+                    let output = "<table class='table'>";
+                    output += "<tr><th>댓글번호</th>";
+                    output += "<th>작성자</th>";
+                    output += "<th>내용</th>";
+                    output += "<th>작성시간</th></tr>";
+                    for(let i in result){
+                        output += "<tr>";
+                        output += "<td>"+result[i].id+"</td>";
+                        output += "<td>"+result[i].commentWriter+"</td>";
+                        output += "<td>"+result[i].commentContents+"</td>";
+                        output += "<td>"+moment(result[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss")+"</td>";
+                        output += "</tr>";
+                    }
+                    output += "</table>";
+                    document.getElementById('comment-list').innerHTML = output;
+                    document.getElementById('commentWriter').value='${sessionScope.loginMemberId}';
+                    document.getElementById('commentContents').value='';
                 },
                 error: function () {
                     alert("오류");
@@ -88,7 +125,13 @@
     }
 
     const boardDelete = () => {
-        location.href = "/board/boardWriterCheck?id=${board.id}";
+        const boardWriter = "${board.boardWriter}";
+        if(boardWriter == "${sessionScope.loginMemberId}"){
+            location.href = "/board/delete?id=${board.id}";
+        }
+        else{
+            alert("해당 게시글의 작성자가 아닙니다.");
+        }
     }
 
 

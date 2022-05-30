@@ -9,15 +9,23 @@
 <html>
 <head>
     <title>My Page</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container">
     <h2>My Page</h2>
-    <button onclick="location.href='/member/update?id=${sessionScope.loginId}'">회원 정보 수정</button>
+    <button class="btn btn-outline-dark" onclick="location.href='/member/update?id=${member.id}'">회원 정보 수정</button>
 </div>
 <div class="container">
-    <h3>개인 정보</h3>
-
+    <h3>Profile</h3>
+    <img src="${pageContext.request.contextPath}/upload/${member.memberProfileName}"
+          alt="" height="150" width="150"><br>
+    아이디: <input type="text" class="form-control" value="${member.memberId}" readonly><br>
+    비밀번호: <input type="text" class="form-control" value="${member.memberPassword}" readonly><br>
+    이름: <input type="text" class="form-control" value="${member.memberName}" readonly><br>
+    이메일: <input type="text" class="form-control" value="${member.memberEmail}" readonly><br>
+    전화번호:<input type="text" class="form-control" value="${member.memberMobile}" readonly><br>
 </div>
 </body>
 </html>

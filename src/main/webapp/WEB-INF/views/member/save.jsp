@@ -11,10 +11,28 @@
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script src="/resources/js/jquery.js"></script>
+    <style>
+        .btn {
+            width: 150px;
+            height: 40px;
+        }
+        .container{
+            margin-top: 20px;
+            padding: 60px;
+        }
+        .form-floating{
+            margin-left: 120px;
+        }
+
+        .form-control{
+            width: 600px;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-    <h2>회원가입</h2>
+    <h2 style="text-align: center">회원가입</h2>
     <div class="form-floating">
         <form action="/member/save" method="post" enctype="multipart/form-data">
             아이디<br><input type="text" class="form-control" onblur="duplicateCheck()" id="memberId" name="memberId" placeholder="아이디를 입력해주세요.">
@@ -29,9 +47,9 @@
             전화번호<br>
             <input type="text" class="form-control" id="memberMobile" onblur="mobileCheck()" name="memberMobile" placeholder="전화번호 11자리를 입력해주세요.(-포함) ex)010-1111-1111">
             <span id="mobile-check-result"></span><br>
-            프로필 사진 : <input type="file" name="memberProfile"><br>
-            <input type="button" class="btn btn-primary" onclick="location.href='/'" value="Home">
-            <input type="submit" class="btn btn-outline-success" value="회원가입">
+            프로필 사진 : <input type="file"  style="text-align: center; margin-bottom: 20px" name="memberProfile"><br>
+            <input type="button" class="btn btn-outline-primary" onclick="location.href='/'" value="Home">
+            <input type="submit" class="btn btn-primary" value="회원가입">
         </form>
     </div>
 </div>

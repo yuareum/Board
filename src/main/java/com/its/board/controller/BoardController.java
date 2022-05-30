@@ -28,7 +28,7 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public String save(HttpSession session, BoardDTO boardDTO) throws IOException {
+    public String save(BoardDTO boardDTO) throws IOException {
         boolean saveResult = boardService.save(boardDTO);
         if(saveResult){
             return "redirect:/board/findAll";

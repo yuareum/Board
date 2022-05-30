@@ -11,11 +11,6 @@
 <head>
     <title>회원 정보 조회</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <style>
-        .container{
-            max-width: 1000px;
-        }
-    </style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>

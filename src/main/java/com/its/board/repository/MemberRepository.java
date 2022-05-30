@@ -47,4 +47,8 @@ public class MemberRepository {
     public void update(MemberDTO memberDTO) {
          sql.update("Member.update", memberDTO);
     }
+
+    public void updatePassword(MemberDTO memberDTO) {
+        sql.update("Member.updatePassword", memberDTO);
+    }
 }
