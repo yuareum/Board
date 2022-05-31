@@ -12,14 +12,16 @@
     <title>회원 정보 수정</title>
     <style>
         .container{
-            margin-left: 400px;
+            margin-left: 500px;
         }
         .form-control {
             width: 500px;
-            height: 30px;
+            height: 40px;
         }
-        .btn {
+        .btn-outline-primary {
             margin-left: 100px;
+        }
+        .btn{
             width: 230px;
             height: 50px;
         }
@@ -42,9 +44,9 @@
         이름: <input type="text" class="form-control" name="memberName" value="${updateMember.memberName}" readonly><br>
         이메일: <input type="text" class="form-control" name="memberEmail" value="${updateMember.memberEmail}"><br>
         전화번호:<input type="text" class="form-control" name="memberMobile" value="${updateMember.memberMobile}"><br>
+        <input type="button" class="btn btn-outline-primary" onclick="location.href='/member/myPage?id=${updateMember.id}'" value="My Page">
         <input class="btn btn-primary" type="button" onclick="memberUpdate()" value="정보수정">
     </form>
-    <button class="btn btn-outline-primary"onclick="location.href='/member/myPage?id=${updateMember.id}'">My Page</button>
 </div>
 </body>
 <script>

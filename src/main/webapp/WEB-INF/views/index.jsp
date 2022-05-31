@@ -53,7 +53,7 @@
 <div class="row g-5">
     <div class="col-md-6">
         <h2 style="margin-left:330px; margin-top: 200px">MyBoard</h2>
-        <h4 style="margin-left:330px;">개인 회원제 게시판</h4>
+        <h4 style="margin-left:330px;">회원제 게시판</h4>
     </div>
 
 </div>
