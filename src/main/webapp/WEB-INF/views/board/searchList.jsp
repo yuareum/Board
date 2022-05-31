@@ -47,7 +47,7 @@
             <th>작성시간</th>
             <th>조회수</th>
         </tr>
-        <c:forEach items="${boardList}" var="board">
+        <c:forEach items="${searchList}" var="board">
             <tr>
                 <td>${board.id}</td>
                 <td><a href="/board/detail?page=${paging.page}&id=${board.id}">${board.boardTitle}</a></td>

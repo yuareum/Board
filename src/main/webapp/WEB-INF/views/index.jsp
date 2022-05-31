@@ -9,12 +9,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>index</title>
+    <title>My Board</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <style>
         body{
-            background-image: url("/resources/img/img_1.jpg");
-
+            background-image: url("/resources/img/img.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
         }
         .d-flex {
             margin: 0px;
@@ -29,17 +30,7 @@
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             <c:if test="${empty sessionScope.loginMemberId}">
-                <li><a href="/member/save" class="nav-link px-2 link-dark">회원가입</a></li>
-            </c:if>
-            <li><a href="/board/findAll" class="nav-link px-2 link-dark">글 목록</a></li>
-            <c:if test="${sessionScope.loginMemberId eq 'admin'}">
-                <li><a href="/member/admin" class="nav-link px-2 link-dark">관리자 페이지</a></li>
-            </c:if>
-            <c:if test="${!empty sessionScope.loginMemberId}">
-                <li><a href="/board/myPage?id=${sessionScope.loginId}" class="nav-link px-2 link-dark">My Page</a></li>
-            </c:if>
-            <c:if test="${empty sessionScope.loginMemberId}">
-                <li><a href="/member/login" class="nav-link px-2 link-dark">로그인</a></li>
+                <li><a href="/member/login"  class="nav-link px-2 link-dark">로그인</a></li>
             </c:if>
             <c:if test="${!empty sessionScope.loginMemberId}">
                 <li><a href="/member/logout" class="nav-link px-2 link-dark">로그아웃</a></li>
@@ -47,11 +38,24 @@
             <c:if test="${empty sessionScope.loginMemberId}">
                 <li><a href="/member/save" class="nav-link px-2 link-dark">회원가입</a></li>
             </c:if>
+            <c:if test="${sessionScope.loginMemberId eq 'admin'}">
+                <li><a href="/member/admin?memberId=${sessionScope.loginMemberId}" class="nav-link px-2 link-dark">관리자 페이지</a></li>
+            </c:if>
+            <c:if test="${!empty sessionScope.loginMemberId}">
+                <li><a href="/member/myPage?id=${sessionScope.loginId}" class="nav-link px-2 link-dark">My Page</a></li>
+            </c:if>
         </ul>
         <div class="col-md-3 text-end">
             <button type="button" onclick="location.href='/board/findAll'" class="btn btn-outline-dark me-2">글 목록</button>
         </div>
     </header>
+</div>
+<div class="row g-5">
+    <div class="col-md-6">
+        <h2 style="margin-left:330px; margin-top: 200px">MyBoard</h2>
+        <h4 style="margin-left:330px;">개인 회원제 게시판</h4>
+    </div>
+
 </div>
 </body>
 </html>

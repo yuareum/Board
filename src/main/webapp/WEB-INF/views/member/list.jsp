@@ -17,7 +17,6 @@
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container">
     <h2>회원목록</h2>
-    <button class="btn btn-primary" style="float: right" onclick="location.href='/member/admin'">관리자 페이지로 이동</button>
     <table class="table">
         <tr>
             <th>회원번호</th>

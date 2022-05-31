@@ -58,9 +58,7 @@ public class BoardController {
     public String search(@RequestParam("searchType") String searchType,
                          @RequestParam("q") String q, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         List<BoardDTO> searchList = boardService.search(searchType, q);
-        model.addAttribute("boardList", searchList);
-//        PageDTO paging = boardService.paging(page);
-//        model.addAttribute("paging", paging);
+        model.addAttribute("searchList", searchList);
         return "board/searchList";
     }
     @GetMapping("/update")

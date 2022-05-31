@@ -34,7 +34,7 @@
                     <li class="nav-item"><a class="nav-link" href="/board/findAll">글 목록</a></li>
                     <li class="nav-item">
                         <c:if test="${sessionScope.loginMemberId eq 'admin'}">
-                            <a class="nav-link" href="/member/admin">관리자 페이지</a>
+                            <a class="nav-link" href="/member/admin?memberId=${sessionScope.loginMemberId}">관리자 페이지</a>
                         </c:if>
                     </li>
                     <li class="nav-item">

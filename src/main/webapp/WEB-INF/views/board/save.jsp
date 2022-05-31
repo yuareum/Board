@@ -10,6 +10,16 @@
 <head>
     <title>글 작성</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .btn {
+            width: 230px;
+            height: 45px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container mb-3">

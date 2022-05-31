@@ -48,7 +48,8 @@ public class MemberRepository {
          sql.update("Member.update", memberDTO);
     }
 
-    public void updatePassword(MemberDTO memberDTO) {
-        sql.update("Member.updatePassword", memberDTO);
+
+    public MemberDTO findByMemberId(String memberId) {
+        return sql.selectOne("Member.findByMemberId", memberId);
     }
 }

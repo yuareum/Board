@@ -12,16 +12,26 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script src="/resources/js/jquery.js"></script>
     <style>
+        body {
+            background-color: #f2f3ff;
+        }
         .btn {
             width: 150px;
             height: 40px;
         }
         .container{
-            margin-top: 20px;
-            padding: 60px;
+            max-width: 680px;
+            margin-top: 100px;
+            padding: 30px;
+            background-color: white;
+            border: black;
+            border-radius: 10px;
         }
         .form-floating{
-            margin-left: 120px;
+            max-width: 600px;
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 10px;
         }
 
         .form-control{

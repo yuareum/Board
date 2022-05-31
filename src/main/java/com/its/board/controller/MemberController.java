@@ -61,8 +61,15 @@ public class MemberController {
         return "index";
     }
     @GetMapping("/admin")
-    public String admin(){
-        return "member/admin";
+    public String admin(@RequestParam("memberId") String memberId, Model model,HttpSession session) {
+        MemberDTO loginMember = memberService.findByMemberId(memberId);
+        model.addAttribute("member", loginMember);
+        if("admin".equals(loginMember.getMemberId())){
+            return "member/admin";
+        }
+        else{
+            return "redirect:/member/findAll";
+        }
     }
 
     @GetMapping("/detail")

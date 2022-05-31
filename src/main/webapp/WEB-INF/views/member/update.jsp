@@ -11,22 +11,30 @@
 <head>
     <title>회원 정보 수정</title>
     <style>
+        .container{
+            margin-left: 400px;
+        }
         .form-control {
             width: 500px;
             height: 30px;
         }
         .btn {
-            width: 80px;
-            height: 20px;
+            margin-left: 100px;
+            width: 230px;
+            height: 50px;
+        }
+        .form-control{
+            width: 680px;
+            height: 50px;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>회원 정보 수정</h2>
+    <h2 style="margin-top: 30px">회원 정보 수정</h2>
     <form action="/member/update" method="post" name="updateForm">
         <img src="${pageContext.request.contextPath}/upload/${updateMember.memberProfileName}"
-             alt="" height="150" width="150"><br>
+             alt="" height="200" width="200"><br>
         Profile 사진: <input type="file" name="memberProfileName" value="${updateMember.memberProfileName}"><br>
         회원번호: <input type="text" class="form-control" name="id" value="${updateMember.id}" readonly><br>
         아이디: <input type="text" class="form-control" id="updateMemberId" name="memberId" value="${updateMember.memberId}" readonly><br>

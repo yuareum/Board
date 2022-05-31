@@ -14,8 +14,8 @@
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
-<h2>상세 조회</h2>
 <div class="container">
+    <h2>상세 조회</h2>
     <button class="btn btn-info" onclick="location.href='/member/findAll'">회원목록</button>
     <table class="table">
         <tr>

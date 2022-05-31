@@ -99,7 +99,7 @@ public class MemberService {
         memberRepository.update(memberDTO);
     }
 
-    public void updatePassword(MemberDTO memberDTO) {
-        memberRepository.updatePassword(memberDTO);
+    public MemberDTO findByMemberId(String memberId) {
+        return memberRepository.findByMemberId(memberId);
     }
 }
