@@ -45,18 +45,16 @@ public class BoardController {
         return "board/list";
     }
     @GetMapping("/detail")
-    public String findById(@RequestParam("id") Long id, Model model,
-                           @RequestParam(value = "page", required = false, defaultValue = "1") int page){
+    public String findById(@RequestParam("id") Long id, Model model){
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
-        model.addAttribute("page", page);
         List<CommentDTO> commentDTOList = commentService.findAll(id);
         model.addAttribute("commentList", commentDTOList);
         return "board/detail";
     }
     @GetMapping("/search")
     public String search(@RequestParam("searchType") String searchType,
-                         @RequestParam("q") String q, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+                         @RequestParam("q") String q, Model model) {
         List<BoardDTO> searchList = boardService.search(searchType, q);
         model.addAttribute("searchList", searchList);
         return "board/searchList";

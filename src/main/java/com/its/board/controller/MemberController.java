@@ -73,12 +73,9 @@ public class MemberController {
     }
 
     @GetMapping("/detail")
-    public String findById(@RequestParam("id") Long id, Model model,
-    @RequestParam(value = "page", required = false, defaultValue = "1") int page){
+    public String findById(@RequestParam("id") Long id, Model model){
         MemberDTO memberDTO = memberService.findById(id);
-        PageDTO paging = memberService.paging(page);
         model.addAttribute("member", memberDTO);
-        model.addAttribute("paging", paging);
         return "member/detail";
     }
     @GetMapping("/delete")
