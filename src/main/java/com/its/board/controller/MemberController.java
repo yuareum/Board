@@ -61,7 +61,7 @@ public class MemberController {
         return "index";
     }
     @GetMapping("/admin")
-    public String admin(@RequestParam("memberId") String memberId, Model model,HttpSession session) {
+    public String admin(@RequestParam("memberId") String memberId, Model model) {
         MemberDTO loginMember = memberService.findByMemberId(memberId);
         model.addAttribute("member", loginMember);
         if("admin".equals(loginMember.getMemberId())){
