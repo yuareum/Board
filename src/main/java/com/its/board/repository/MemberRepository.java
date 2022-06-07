@@ -11,7 +11,7 @@ import java.util.Map;
 @Repository
 public class MemberRepository {
     @Autowired
-    public SqlSessionTemplate sql;
+    private SqlSessionTemplate sql;
     public int save(MemberDTO memberDTO) {
         return sql.insert("Member.save", memberDTO);
     }

@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class CommentRepository {
     @Autowired
-    public SqlSessionTemplate sql;
+    private SqlSessionTemplate sql;
     public void save(CommentDTO commentDTO) {
         sql.insert("Comment.save",commentDTO);
     }

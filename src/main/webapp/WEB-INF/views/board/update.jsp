@@ -13,6 +13,10 @@
         .container{
             max-width: 500px;
         }
+        .btn{
+            width: 180px;
+            height: 50px;
+        }
     </style>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
@@ -26,7 +30,8 @@
         작성자  <input type="text" id="boardWriter" class="form-control"  name="boardWriter" value="${updateBoard.boardWriter}" readonly><br>
         <textarea name="boardContents" class="form-control" cols="30" rows="10">${updateBoard.boardContents}</textarea><br>
         첨부파일:<input type="file" name="boardFileName" value="${updateBoard.boardFileName}"><br>
-        <input class="btn btn-primary" type="button" onclick="boardUpdate()" value="정보수정">
+        <input class="btn btn-outline-primary" type="button" onclick="location.href='/board/detail?id=${updateBoard.id}'" value="취소">
+        <input class="btn btn-primary" type="button" onclick="boardUpdate()" value="게시글수정">
     </form>
 </div>
 </body>

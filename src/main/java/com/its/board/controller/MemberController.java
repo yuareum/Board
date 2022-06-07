@@ -114,5 +114,4 @@ public class MemberController {
         memberService.update(memberDTO);
         return "redirect:/member/myPage?id=" + memberDTO.getId();
     }
-
 }
