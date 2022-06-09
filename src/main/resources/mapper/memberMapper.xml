@@ -37,7 +37,7 @@
     </select>
 
     <update id="update" parameterType="member">
-        update board_member set memberEmail = #{memberEmail}, memberMobile=#{memberMobile} , memberProfileName = #{memberProfileName} where id= #{id}
+        update board_member set memberEmail = #{memberEmail}, memberMobile=#{memberMobile} where id= #{id}
     </update>
 
     <select id="findByMemberId" parameterType="String" resultType="member">

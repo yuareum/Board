@@ -37,7 +37,7 @@
     <form action="/member/update" method="post" name="updateForm">
         <img src="${pageContext.request.contextPath}/upload/${updateMember.memberProfileName}"
              alt="" height="200" width="200"><br>
-        Profile 사진: <input type="file" name="memberProfileName" value="${updateMember.memberProfileName}"><br>
+        Profile 사진: <input type="text" class="form-control" name="memberProfileName" value="${updateMember.memberProfileName}" readonly><br>
         회원번호: <input type="text" class="form-control" name="id" value="${updateMember.id}" readonly><br>
         아이디: <input type="text" class="form-control" id="updateMemberId" name="memberId" value="${updateMember.memberId}" readonly><br>
         비밀번호: <input type="password" id="password"class="form-control" name="memberPassword"><br>
