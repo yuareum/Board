@@ -30,7 +30,7 @@
     </select>
 
     <update id="update" parameterType="board">
-        update board set boardTitle = #{boardTitle}, boardContents = #{boardContents} , boardFileName = #{boardFileName} where id = #{id}
+        update board set boardTitle = #{boardTitle}, boardContents = #{boardContents} where id = #{id}
     </update>
 
     <delete id="delete" parameterType="Long">
